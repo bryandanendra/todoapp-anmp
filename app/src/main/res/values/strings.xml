@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TodoApp</string>
+    <string name="todo_list">Todo List</string>
+    <string name="create_todo">Create Todo</string>
+    <string name="add_todo">ADD TODO</string>
+    <string name="enter_todo_title">Enter Todo Title</string>
+    <string name="enter_notes">Enter Notes</string>
+    <string name="todo_added">Todo added successfully</string>
+    <string name="title_required">Title cannot be empty</string>
+    <string name="empty_todo_list">Your todo list is empty. Start creating new todos now.</string>
+    <string name="add_new_todo">Add new todo</string>
+    <string name="edit_task">Edit task</string>
+</resources>
