@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.todoapp.data.Todo
 import com.example.todoapp.data.TodoDatabase
@@ -37,6 +38,16 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     fun updateTodoStatus(id: Int, isCompleted: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateTodoStatus(id, isCompleted)
+        }
+    }
+    
+    fun getTodoById(id: Int): LiveData<Todo?> = liveData(Dispatchers.IO) {
+        emit(repository.getTodoById(id))
+    }
+    
+    fun updateTodo(todo: Todo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateTodo(todo)
         }
     }
 } 

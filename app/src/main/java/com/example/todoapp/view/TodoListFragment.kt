@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.adapter.TodoAdapter
-import com.example.todoapp.data.Todo
 import com.example.todoapp.databinding.FragmentTodoListBinding
 import com.example.todoapp.viewmodel.TodoViewModel
 
@@ -27,6 +26,8 @@ class TodoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTodoListBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
     
@@ -34,10 +35,9 @@ class TodoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         
         setupRecyclerView()
-        observeViewModel()
         
         binding.btnFab.setOnClickListener {
-            findNavController().navigate(R.id.action_todoListFragment_to_createTodoFragment)
+            findNavController().navigate(R.id.actionCreateTodo)
         }
     }
     
@@ -47,27 +47,13 @@ class TodoListFragment : Fragment() {
                 viewModel.updateTodoStatus(todo.id, isChecked)
             },
             onTaskEdit = { todo ->
-                // Navigate to edit todo (can be implemented later)
+                // This is now handled by the EditClickListener in the adapter
             }
         )
         
         binding.recViewTodo.apply {
             adapter = todoAdapter
             layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
-    
-    private fun observeViewModel() {
-        viewModel.allTodos.observe(viewLifecycleOwner) { todos ->
-            todoAdapter.submitList(todos)
-            
-            if (todos.isEmpty()) {
-                binding.txtError.visibility = View.VISIBLE
-                binding.recViewTodo.visibility = View.GONE
-            } else {
-                binding.txtError.visibility = View.GONE
-                binding.recViewTodo.visibility = View.VISIBLE
-            }
         }
     }
     

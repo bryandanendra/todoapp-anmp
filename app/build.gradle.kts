@@ -36,6 +36,13 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        exclude(group = "androidx.databinding", module = "baseLibrary")
     }
 }
 

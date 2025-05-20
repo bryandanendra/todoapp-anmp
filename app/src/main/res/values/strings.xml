@@ -10,4 +10,6 @@
     <string name="empty_todo_list">Your todo list is empty. Start creating new todos now.</string>
     <string name="add_new_todo">Add new todo</string>
     <string name="edit_task">Edit task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

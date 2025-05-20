@@ -23,4 +23,8 @@ class TodoRepository(private val todoDao: TodoDao) {
     suspend fun getTodoById(id: Int): Todo? {
         return todoDao.getTodoById(id)
     }
+    
+    suspend fun updateTodo(todo: Todo) {
+        todoDao.updateTodo(todo)
+    }
 } 

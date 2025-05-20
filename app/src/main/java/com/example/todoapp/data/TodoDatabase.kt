@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.todoapp.util.db_name
 
-@Database(entities = [Todo::class], version = 1, exportSchema = false)
+@Database(entities = [Todo::class], version = 2, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
     
     abstract fun todoDao(): TodoDao
@@ -19,8 +20,10 @@ abstract class TodoDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TodoDatabase::class.java,
-                    "todo_database"
-                ).build()
+                    db_name
+                )
+                .fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }
